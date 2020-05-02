@@ -65,5 +65,6 @@ module.exports = (env = {}) => ({
     stats: 'minimal',
     contentBase: __dirname,
     overlay: true,
+    historyApiFallback: true,
   },
 })

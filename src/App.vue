@@ -1,25 +1,15 @@
 <template>
   <div>
-    <h1>test</h1>
-    <button @click="inc">Clicked {{ count }} times.</button>
+    <div id="nav">
+      <router-link to="/"> Home</router-link>
+      <router-link to="/help">Help </router-link>
+    </div>
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-export default {
-  setup() {
-    const count = ref(0)
-    const inc = () => {
-      count.value++
-    }
-
-    return {
-      count,
-      inc,
-    }
-  },
-}
+export default {}
 </script>
 
 <style scoped></style>
