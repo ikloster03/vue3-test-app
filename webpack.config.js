@@ -5,12 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = (env = {}) => ({
   mode: env.prod ? 'production' : 'development',
   devtool: env.prod ? 'source-map' : 'cheap-module-eval-source-map',
-  entry: path.resolve(__dirname, './src/main.js'),
+  entry: path.resolve(__dirname, './src/main.ts'),
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
       // this isn't technically needed, since the default `vue` entry for bundlers
       // is a simple `export * from '@vue/runtime-dom`. However having this
@@ -24,6 +25,14 @@ module.exports = (env = {}) => ({
       {
         test: /\.vue$/,
         use: 'vue-loader',
+      },
+      {
+        test: /\.(ts|tsx)?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
       },
       {
         test: /\.png$/,
